@@ -1,0 +1,75 @@
+[
+  {
+    "id": "silas",
+    "firstName": "Silas",
+    "background": "Founder",
+    "studyWork": "Electrical engineer, STUHI, FR8",
+    "proudProject": "Building a rocket with thrust-vector control",
+    "interests": ["hardware", "space", "robotics", "defense", "AI"],
+    "motivation": "I'm here to win",
+    "githubUrl": "https://github.com/s1laswang",
+    "skills": ["PCB design", "embedded C", "control systems", "CAD", "Python", "pitching"],
+    "preferredRole": "hardware",
+    "awake": { "from": "09:00", "to": "03:00" }
+  },
+  {
+    "id": "lotta",
+    "firstName": "Lotta",
+    "background": "Student",
+    "studyWork": "Service design, Laurea",
+    "proudProject": "Redesigned the booking flow of a youth health clinic",
+    "interests": ["health", "education", "social impact"],
+    "motivation": "First Junction, wants a kind team",
+    "skills": ["Figma", "user research", "prototyping", "illustration"],
+    "preferredRole": "design",
+    "awake": { "from": "09:00", "to": "00:00" }
+  },
+  {
+    "id": "eetu",
+    "firstName": "Eetu",
+    "background": "Student",
+    "studyWork": "Computer science, University of Oulu",
+    "proudProject": "Discord bot that runs fantasy-hockey leagues for 900 people",
+    "interests": ["fintech", "gaming", "AI"],
+    "motivation": "Wants to build something people pay for",
+    "skills": ["Python", "Django", "React", "PostgreSQL"],
+    "preferredRole": "code",
+    "awake": { "from": "13:00", "to": "05:00" }
+  },
+  {
+    "id": "mira",
+    "firstName": "Mira",
+    "background": "Student",
+    "studyWork": "Machine learning, Aalto",
+    "proudProject": "Computer-vision model that sorts recyclables on a conveyor",
+    "interests": ["AI", "climate", "health", "food"],
+    "motivation": "Wants her models to leave the notebook",
+    "skills": ["PyTorch", "computer vision", "Python", "data labelling"],
+    "preferredRole": "AI",
+    "awake": { "from": "08:00", "to": "00:00" }
+  },
+  {
+    "id": "sami",
+    "firstName": "Sami",
+    "background": "Student",
+    "studyWork": "Business, Aalto",
+    "proudProject": "Sold 400 hoodies for his student guild in a week",
+    "interests": ["mobility", "energy", "fintech", "health"],
+    "motivation": "Find a technical team that needs a closer",
+    "skills": ["pitching", "sales", "financial modelling", "Canva"],
+    "preferredRole": "business",
+    "awake": { "from": "07:00", "to": "23:00" }
+  },
+  {
+    "id": "ronja",
+    "firstName": "Ronja",
+    "background": "Student",
+    "studyWork": "Upper secondary, maker club lead",
+    "proudProject": "MIDI drum pads built from pizza boxes and piezo sensors",
+    "interests": ["music", "gaming", "hardware"],
+    "motivation": "Wants to solder something at 3am",
+    "skills": ["Arduino", "soldering", "3D printing", "MIDI"],
+    "preferredRole": "hardware",
+    "awake": { "from": "11:00", "to": "03:00" }
+  }
+]

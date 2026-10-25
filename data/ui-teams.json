@@ -1,0 +1,403 @@
+[
+ {
+  "id": "nebula",
+  "name": "Nebula Ninjas",
+  "bio": "Building an AI study buddy that turns lecture notes into quizzes. Aiming for the EdTech track.",
+  "lookingFor": [
+   "Designer",
+   "ML / AI"
+  ],
+  "openSpots": 2,
+  "members": [
+   {
+    "name": "Aino",
+    "roles": [
+     "Frontend",
+     "Designer",
+     "Product / PM"
+    ],
+    "skills": [
+     "React",
+     "Figma",
+     "TypeScript"
+    ],
+    "interests": [
+     "education",
+     "AI"
+    ],
+    "awake": {
+     "from": "08:00",
+     "to": "23:00"
+    }
+   },
+   {
+    "name": "Mikko",
+    "roles": [
+     "Backend",
+     "Data",
+     "Full-stack"
+    ],
+    "skills": [
+     "Python",
+     "FastAPI",
+     "SQL"
+    ],
+    "interests": [
+     "education",
+     "AI",
+     "gaming"
+    ],
+    "awake": {
+     "from": "10:00",
+     "to": "02:00"
+    }
+   }
+  ]
+ },
+ {
+  "id": "gridlock",
+  "name": "Gridlock",
+  "bio": "Real-time traffic simulation for the Smart City challenge — we have the data pipeline, need someone to make it look good.",
+  "lookingFor": [
+   "Frontend"
+  ],
+  "openSpots": 1,
+  "members": [
+   {
+    "name": "Sara",
+    "roles": [
+     "Data",
+     "ML / AI",
+     "Backend"
+    ],
+    "skills": [
+     "Pandas",
+     "Python",
+     "SQL"
+    ],
+    "interests": [
+     "mobility",
+     "climate"
+    ],
+    "awake": {
+     "from": "07:00",
+     "to": "22:00"
+    }
+   },
+   {
+    "name": "Jonas",
+    "roles": [
+     "Backend",
+     "Full-stack",
+     "Hardware"
+    ],
+    "skills": [
+     "Go",
+     "Docker",
+     "Node.js"
+    ],
+    "interests": [
+     "mobility",
+     "energy",
+     "hardware"
+    ],
+    "awake": {
+     "from": "08:00",
+     "to": "23:30"
+    }
+   }
+  ]
+ },
+ {
+  "id": "heat",
+  "name": "Heat Heroes",
+  "bio": "A wearable that warns construction workers about heat stress. Hardware works, the app and story don't yet.",
+  "lookingFor": [
+   "Backend",
+   "Pitch & business"
+  ],
+  "openSpots": 2,
+  "members": [
+   {
+    "name": "Leo",
+    "roles": [
+     "Hardware",
+     "Mobile",
+     "Backend"
+    ],
+    "skills": [
+     "Arduino",
+     "C++",
+     "Swift"
+    ],
+    "interests": [
+     "hardware",
+     "health",
+     "robotics"
+    ],
+    "awake": {
+     "from": "11:00",
+     "to": "03:00"
+    }
+   },
+   {
+    "name": "Emma",
+    "roles": [
+     "Mobile",
+     "Frontend",
+     "Designer"
+    ],
+    "skills": [
+     "Flutter",
+     "Figma",
+     "TypeScript"
+    ],
+    "interests": [
+     "health",
+     "social impact"
+    ],
+    "awake": {
+     "from": "10:00",
+     "to": "02:00"
+    }
+   }
+  ]
+ },
+ {
+  "id": "pantry",
+  "name": "Pixel Pantry",
+  "bio": "Food-waste app for student kitchens: scan what's in the fridge, get recipes before it expires.",
+  "lookingFor": [
+   "Frontend",
+   "Backend",
+   "Mobile"
+  ],
+  "openSpots": 3,
+  "members": [
+   {
+    "name": "Noor",
+    "roles": [
+     "Designer",
+     "Product / PM",
+     "Pitch & business"
+    ],
+    "skills": [
+     "Figma",
+     "Pitching",
+     "React"
+    ],
+    "interests": [
+     "food",
+     "climate",
+     "social impact"
+    ],
+    "awake": {
+     "from": "09:00",
+     "to": "00:00"
+    }
+   }
+  ]
+ },
+ {
+  "id": "quokka",
+  "name": "Quantum Quokkas",
+  "bio": "Quantum-inspired route optimiser for delivery bikes. Strong on algorithms, weak on UI.",
+  "lookingFor": [
+   "Designer"
+  ],
+  "openSpots": 1,
+  "members": [
+   {
+    "name": "Ville",
+    "roles": [
+     "ML / AI",
+     "Data",
+     "Backend"
+    ],
+    "skills": [
+     "PyTorch",
+     "LLMs",
+     "Python"
+    ],
+    "interests": [
+     "AI",
+     "mobility",
+     "space"
+    ],
+    "awake": {
+     "from": "12:00",
+     "to": "04:00"
+    }
+   },
+   {
+    "name": "Anna",
+    "roles": [
+     "Backend",
+     "Full-stack",
+     "Data"
+    ],
+    "skills": [
+     "Rust",
+     "SQL",
+     "Docker"
+    ],
+    "interests": [
+     "security",
+     "mobility"
+    ],
+    "awake": {
+     "from": "13:00",
+     "to": "04:00"
+    }
+   },
+   {
+    "name": "Tom",
+    "roles": [
+     "Data",
+     "ML / AI",
+     "Frontend"
+    ],
+    "skills": [
+     "Pandas",
+     "SQL",
+     "React"
+    ],
+    "interests": [
+     "AI",
+     "fintech"
+    ],
+    "awake": {
+     "from": "11:00",
+     "to": "03:00"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lights",
+  "name": "Northern Lights",
+  "bio": "Accessible event companion app for the Junction community — live schedule, quiet rooms, buddy system.",
+  "lookingFor": [
+   "ML / AI",
+   "Frontend"
+  ],
+  "openSpots": 2,
+  "members": [
+   {
+    "name": "Elias",
+    "roles": [
+     "Full-stack",
+     "Frontend",
+     "Backend"
+    ],
+    "skills": [
+     "Next.js",
+     "Node.js",
+     "TypeScript"
+    ],
+    "interests": [
+     "social impact",
+     "education"
+    ],
+    "awake": {
+     "from": "08:00",
+     "to": "00:00"
+    }
+   },
+   {
+    "name": "Maya",
+    "roles": [
+     "Product / PM",
+     "Pitch & business",
+     "Designer"
+    ],
+    "skills": [
+     "Pitching",
+     "Figma",
+     "SQL"
+    ],
+    "interests": [
+     "social impact",
+     "health",
+     "music"
+    ],
+    "awake": {
+     "from": "07:30",
+     "to": "23:00"
+    }
+   }
+  ]
+ },
+ {
+  "id": "byte",
+  "name": "Byte Club",
+  "bio": "Health-data dashboard. Team is complete.",
+  "lookingFor": [],
+  "openSpots": 0,
+  "members": [
+   {
+    "name": "Rasmus",
+    "roles": [
+     "Backend",
+     "ML / AI",
+     "Full-stack"
+    ],
+    "skills": [
+     "Python",
+     "Docker",
+     "LLMs"
+    ],
+    "interests": [
+     "health",
+     "AI"
+    ],
+    "awake": {
+     "from": "09:00",
+     "to": "01:00"
+    }
+   },
+   {
+    "name": "Julia",
+    "roles": [
+     "Frontend",
+     "Designer",
+     "Mobile"
+    ],
+    "skills": [
+     "React",
+     "Figma",
+     "Flutter"
+    ],
+    "interests": [
+     "health",
+     "music"
+    ],
+    "awake": {
+     "from": "09:00",
+     "to": "01:00"
+    }
+   },
+   {
+    "name": "Omar",
+    "roles": [
+     "Pitch & business",
+     "Product / PM",
+     "Data"
+    ],
+    "skills": [
+     "Pitching",
+     "SQL",
+     "Figma"
+    ],
+    "interests": [
+     "health",
+     "fintech"
+    ],
+    "awake": {
+     "from": "09:00",
+     "to": "00:00"
+    }
+   }
+  ]
+ }
+]

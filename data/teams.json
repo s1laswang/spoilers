@@ -1,0 +1,138 @@
+[
+  {
+    "id": "orbital-lettuce",
+    "name": "Orbital Lettuce",
+    "idea": "Satellite imagery plus cheap greenhouse sensors that warn Nordic growers about crop stress two days early.",
+    "tags": ["climate", "space", "AI", "food", "hardware"],
+    "missingRoles": ["hardware"],
+    "members": [
+      { "id": "ol-aino", "firstName": "Aino", "background": "Student", "studyWork": "Data science, Aalto", "proudProject": "Trained a model to count seals in drone photos for a WWF volunteer project", "interests": ["AI", "climate", "space"], "motivation": "Want to ship something farmers would actually use", "skills": ["Python", "PyTorch", "remote sensing", "pandas"], "preferredRole": "AI", "awake": { "from": "11:00", "to": "03:00" } },
+      { "id": "ol-jonas", "firstName": "Jonas", "background": "Developer", "studyWork": "Frontend developer at an agency", "proudProject": "A React dashboard used by 40 city bus drivers every day", "interests": ["climate", "mobility"], "motivation": "Build fast, demo well", "skills": ["React", "TypeScript", "Node.js", "maps"], "preferredRole": "code", "awake": { "from": "09:00", "to": "01:00" } },
+      { "id": "ol-leena", "firstName": "Leena", "background": "Student", "studyWork": "Business, Hanken", "proudProject": "Ran a campus food-waste startup that sold surplus lunches", "interests": ["food", "climate", "social impact"], "motivation": "Learn how deep-tech teams pitch", "skills": ["pitching", "market research", "Figma"], "preferredRole": "business", "awake": { "from": "07:00", "to": "23:00" } }
+    ]
+  },
+  {
+    "id": "kessler-watch",
+    "name": "Kessler Watch",
+    "idea": "An open debris-conjunction tracker for small satellite operators, with a 50-euro DIY ground station.",
+    "tags": ["space", "security", "hardware", "defense"],
+    "missingRoles": ["hardware", "design"],
+    "members": [
+      { "id": "kw-mikael", "firstName": "Mikael", "background": "Student", "studyWork": "Space science, Aalto", "proudProject": "Wrote an orbit propagator in Rust for a CubeSat club", "interests": ["space", "defense", "security"], "motivation": "Space is getting crowded and nobody watches the small stuff", "skills": ["Rust", "C++", "orbital mechanics", "Linux"], "preferredRole": "code", "awake": { "from": "10:00", "to": "04:00" } },
+      { "id": "kw-sara", "firstName": "Sara", "background": "Researcher", "studyWork": "Signal processing research assistant", "proudProject": "Kalman filter that tracks ships from AIS gaps", "interests": ["space", "AI", "security"], "motivation": "Wants a real use for her tracking work", "skills": ["Python", "Kalman filters", "machine learning", "MATLAB"], "preferredRole": "AI", "awake": { "from": "07:00", "to": "22:00" } }
+    ]
+  },
+  {
+    "id": "quiet-grid",
+    "name": "Quiet Grid",
+    "idea": "A home battery controller that charges when Nord Pool prices drop and sells back at the peak.",
+    "tags": ["energy", "climate", "hardware", "fintech"],
+    "missingRoles": ["AI"],
+    "members": [
+      { "id": "qg-veeti", "firstName": "Veeti", "background": "Student", "studyWork": "Electrical engineering, Tampere University", "proudProject": "Designed a 4-layer BMS board for a solar boat", "interests": ["energy", "hardware", "climate"], "motivation": "Wants to own the hardware end to end", "skills": ["PCB design", "embedded C", "power electronics", "KiCad"], "preferredRole": "hardware", "awake": { "from": "09:00", "to": "01:00" } },
+      { "id": "qg-emma", "firstName": "Emma", "background": "Developer", "studyWork": "Backend developer at a fintech", "proudProject": "Price-alert bot for electricity spot prices with 3k users", "interests": ["fintech", "energy"], "motivation": "Make spot pricing useful for normal people", "skills": ["Python", "FastAPI", "React", "PostgreSQL"], "preferredRole": "code", "awake": { "from": "10:00", "to": "02:00" } },
+      { "id": "qg-oskari", "firstName": "Oskari", "background": "Founder", "studyWork": "Runs a small solar installation company", "proudProject": "Grew the company to 12 installs a month", "interests": ["energy", "fintech", "climate"], "motivation": "Looking for a product his customers would buy", "skills": ["sales", "pitching", "electrical installation"], "preferredRole": "business", "awake": { "from": "07:00", "to": "23:00" } }
+    ]
+  },
+  {
+    "id": "lumo",
+    "name": "Lumo",
+    "idea": "A journaling app that helps students notice stress patterns, with gentle AI reflections.",
+    "tags": ["health", "AI", "social impact", "education"],
+    "missingRoles": ["code"],
+    "members": [
+      { "id": "lu-iida", "firstName": "Iida", "background": "Student", "studyWork": "Interaction design, Aalto ARTS", "proudProject": "Redesigned the student union app and doubled weekly users", "interests": ["health", "education", "social impact"], "motivation": "Design for wellbeing, not engagement", "skills": ["Figma", "user research", "illustration", "prototyping"], "preferredRole": "design", "awake": { "from": "09:00", "to": "00:00" } },
+      { "id": "lu-noora", "firstName": "Noora", "background": "Student", "studyWork": "Psychology, University of Helsinki", "proudProject": "Peer-support program for first-year students", "interests": ["health", "social impact"], "motivation": "Wants an app she would recommend to her own peers", "skills": ["research", "pitching", "copywriting"], "preferredRole": "business", "awake": { "from": "08:00", "to": "23:00" } }
+    ]
+  },
+  {
+    "id": "pitstop",
+    "name": "PitStop",
+    "idea": "Point your phone at a broken bike and AR shows the repair step by step.",
+    "tags": ["mobility", "education", "AI"],
+    "missingRoles": ["AI", "hardware"],
+    "members": [
+      { "id": "ps-matias", "firstName": "Matias", "background": "Student", "studyWork": "Computer science, University of Helsinki", "proudProject": "An ARKit app that measures rooms, 2k downloads", "interests": ["mobility", "gaming"], "motivation": "Fix bikes without YouTube", "skills": ["Swift", "ARKit", "iOS", "Blender"], "preferredRole": "code", "awake": { "from": "12:00", "to": "04:00" } },
+      { "id": "ps-helmi", "firstName": "Helmi", "background": "Student", "studyWork": "Industrial design, LAB", "proudProject": "Designed a cargo-bike child seat now sold in two shops", "interests": ["mobility", "education", "hardware"], "motivation": "Make repair feel less scary", "skills": ["Figma", "industrial design", "Fusion 360", "user testing"], "preferredRole": "design", "awake": { "from": "08:00", "to": "00:00" } }
+    ]
+  },
+  {
+    "id": "drone-relay",
+    "name": "Drone Relay",
+    "idea": "Drones that fly defibrillators to rural cardiac arrests before the ambulance arrives.",
+    "tags": ["health", "robotics", "hardware", "mobility"],
+    "missingRoles": ["business"],
+    "members": [
+      { "id": "dr-antti", "firstName": "Antti", "background": "Student", "studyWork": "Aerospace engineering, Aalto", "proudProject": "Built a VTOL drone that won a student flight competition", "interests": ["robotics", "hardware", "space"], "motivation": "Wants to fly real hardware at the demo", "skills": ["drones", "PX4", "CAD", "soldering"], "preferredRole": "hardware", "awake": { "from": "08:00", "to": "00:00" } },
+      { "id": "dr-kalle", "firstName": "Kalle", "background": "Developer", "studyWork": "Robotics software engineer", "proudProject": "ROS navigation stack for a warehouse robot", "interests": ["robotics", "AI"], "motivation": "Autonomy that saves lives", "skills": ["ROS", "C++", "Python", "path planning"], "preferredRole": "code", "awake": { "from": "12:00", "to": "04:00" } },
+      { "id": "dr-wilma", "firstName": "Wilma", "background": "Student", "studyWork": "Machine learning, Aalto", "proudProject": "YOLO model that spots people in forest drone footage", "interests": ["AI", "health", "robotics"], "motivation": "Make computer vision matter", "skills": ["PyTorch", "YOLO", "computer vision", "Python"], "preferredRole": "AI", "awake": { "from": "10:00", "to": "02:00" } }
+    ]
+  },
+  {
+    "id": "ledger-lite",
+    "name": "Ledger Lite",
+    "idea": "A budgeting app for teens that turns allowance and summer-job money into savings goals.",
+    "tags": ["fintech", "education"],
+    "missingRoles": ["design"],
+    "members": [
+      { "id": "ll-eero", "firstName": "Eero", "background": "Developer", "studyWork": "Full-stack developer", "proudProject": "Expense-splitting app used by his whole student house", "interests": ["fintech", "gaming"], "motivation": "Money apps are boring, make one that is not", "skills": ["React Native", "TypeScript", "Firebase"], "preferredRole": "code", "awake": { "from": "10:00", "to": "02:00" } },
+      { "id": "ll-sofia", "firstName": "Sofia", "background": "Student", "studyWork": "Economics, Turku School of Economics", "proudProject": "Taught a personal-finance course at her old high school", "interests": ["fintech", "education", "social impact"], "motivation": "Financial literacy for teenagers", "skills": ["pitching", "financial modelling", "Excel"], "preferredRole": "business", "awake": { "from": "07:00", "to": "23:00" } }
+    ]
+  },
+  {
+    "id": "beat-battles",
+    "name": "Beat Battles",
+    "idea": "A rhythm game where you play drums in the air with gesture-sensing wristbands.",
+    "tags": ["music", "gaming", "hardware"],
+    "missingRoles": ["hardware"],
+    "members": [
+      { "id": "bb-niko", "firstName": "Niko", "background": "Student", "studyWork": "Game development, Metropolia", "proudProject": "Released a Steam game with 600 reviews", "interests": ["gaming", "music"], "motivation": "Make a game people play at parties", "skills": ["Unity", "C#", "game design", "audio"], "preferredRole": "code", "awake": { "from": "14:00", "to": "06:00" } },
+      { "id": "bb-ella", "firstName": "Ella", "background": "Student", "studyWork": "Music technology, Sibelius Academy", "proudProject": "Produced an EP and the music for two indie games", "interests": ["music", "gaming"], "motivation": "Wants the music to feel physical", "skills": ["music production", "Ableton", "sound design", "Figma"], "preferredRole": "design", "awake": { "from": "13:00", "to": "05:00" } }
+    ]
+  },
+  {
+    "id": "safe-route",
+    "name": "Safe Route",
+    "idea": "GPS-free indoor navigation for firefighters using UWB beacons dropped as they enter a building.",
+    "tags": ["security", "hardware", "defense", "mobility"],
+    "missingRoles": ["hardware"],
+    "members": [
+      { "id": "sr-petra", "firstName": "Petra", "background": "Student", "studyWork": "Software engineering, LUT", "proudProject": "Android app for her volunteer fire brigade's call-outs", "interests": ["security", "mobility", "social impact"], "motivation": "Her brigade actually needs this", "skills": ["Kotlin", "Android", "Bluetooth"], "preferredRole": "code", "awake": { "from": "06:00", "to": "21:00" } },
+      { "id": "sr-ville", "firstName": "Ville", "background": "Researcher", "studyWork": "Sensor fusion researcher, VTT", "proudProject": "Pedestrian dead-reckoning that holds 2 m accuracy for 10 minutes", "interests": ["defense", "security", "AI"], "motivation": "Wants field-ready, not lab-ready", "skills": ["sensor fusion", "Python", "IMUs", "MATLAB"], "preferredRole": "AI", "awake": { "from": "06:00", "to": "22:00" } }
+    ]
+  },
+  {
+    "id": "carbon-crumbs",
+    "name": "Carbon Crumbs",
+    "idea": "Snap a photo of the school-canteen bin and see the carbon cost of the food wasted that day.",
+    "tags": ["food", "climate", "social impact", "education"],
+    "missingRoles": ["code", "AI"],
+    "members": [
+      { "id": "cc-venla", "firstName": "Venla", "background": "Student", "studyWork": "Graphic design, upper secondary", "proudProject": "Climate poster campaign shown on Helsinki trams", "interests": ["climate", "food", "social impact"], "motivation": "Make waste visible to kids", "skills": ["illustration", "Figma", "branding"], "preferredRole": "design", "awake": { "from": "08:00", "to": "23:00" } },
+      { "id": "cc-joel", "firstName": "Joel", "background": "Student", "studyWork": "Environmental science, University of Eastern Finland", "proudProject": "Measured food waste in 6 school canteens for his thesis", "interests": ["climate", "food", "education"], "motivation": "Turn his thesis data into something schools use", "skills": ["data analysis", "R", "pitching"], "preferredRole": "business", "awake": { "from": "07:00", "to": "23:00" } }
+    ]
+  },
+  {
+    "id": "rover-rescue",
+    "name": "Rover Rescue",
+    "idea": "A tracked rover that maps collapsed buildings and finds survivors by sound and heat.",
+    "tags": ["robotics", "hardware", "defense", "AI"],
+    "missingRoles": ["AI"],
+    "members": [
+      { "id": "rr-tuomas", "firstName": "Tuomas", "background": "Student", "studyWork": "Mechatronics, Tampere University", "proudProject": "Built a stair-climbing robot for a FIRST competition", "interests": ["robotics", "hardware", "defense"], "motivation": "Wants a robot that does real work", "skills": ["mechanical design", "Arduino", "motor control", "CAD"], "preferredRole": "hardware", "awake": { "from": "09:00", "to": "02:00" } },
+      { "id": "rr-linnea", "firstName": "Linnea", "background": "Student", "studyWork": "Electrical engineering, Aalto", "proudProject": "Thermal camera board for a rescue-dog vest", "interests": ["hardware", "robotics", "health"], "motivation": "Rescue tech that works in the cold", "skills": ["PCB design", "embedded C", "thermal imaging", "STM32"], "preferredRole": "hardware", "awake": { "from": "10:00", "to": "02:00" } },
+      { "id": "rr-aleksi", "firstName": "Aleksi", "background": "Developer", "studyWork": "Software developer, gaming studio", "proudProject": "Multiplayer netcode for a mobile game", "interests": ["robotics", "gaming"], "motivation": "First time doing robots, wants to learn", "skills": ["C++", "Python", "networking"], "preferredRole": "code", "awake": { "from": "11:00", "to": "03:00" } }
+    ]
+  },
+  {
+    "id": "phish-fry",
+    "name": "Phish Fry",
+    "idea": "A phishing simulator that trains small-business staff with realistic, personalised fake emails.",
+    "tags": ["security", "AI", "fintech"],
+    "missingRoles": ["design", "business"],
+    "members": [
+      { "id": "pf-daniel", "firstName": "Daniel", "background": "Developer", "studyWork": "Security engineer", "proudProject": "Found and disclosed a bug in a Finnish bank's mobile app", "interests": ["security", "fintech"], "motivation": "Small companies get hacked the most", "skills": ["Python", "Go", "penetration testing"], "preferredRole": "code", "awake": { "from": "11:00", "to": "03:00" } },
+      { "id": "pf-julia", "firstName": "Julia", "background": "Student", "studyWork": "Computer science, Aalto", "proudProject": "LLM classifier that flags scam texts with 94% accuracy", "interests": ["AI", "security"], "motivation": "Use LLMs for defence, not just attacks", "skills": ["Python", "LLMs", "NLP", "scikit-learn"], "preferredRole": "AI", "awake": { "from": "09:00", "to": "01:00" } }
+    ]
+  }
+]
