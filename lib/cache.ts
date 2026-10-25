@@ -37,6 +37,6 @@ export const personaKey = (p: Participant) => sha(JSON.stringify(modelView(p)));
 export const pairKey = (p: Participant, teamId: string) =>
   sha(`${personaKey(p)}|${teamId}|${SIM_VERSION}`);
 
-export function dump(): Seed {
-  return { personas: Object.fromEntries(personas), sims: Object.fromEntries(sims) };
+export function dump(extra: Record<string, unknown> = {}): Seed & Record<string, unknown> {
+  return { ...(seed as object), personas: Object.fromEntries(personas), sims: Object.fromEntries(sims), ...extra };
 }

@@ -7670,5 +7670,547 @@
     "one_liner": "They demoed a convincing scam score and a button that triggered it, but the personalised campaign still depended on manual setup."
    }
   ]
+ },
+ "explains": {
+  "bde74b5190d08ae8": {
+   "headline": "You could add a distinctive hardware angle to Byte Club’s health-data dashboard.",
+   "whyYouFit": [
+    "Byte Club has no hardware role yet, and your preferred role is hardware.",
+    "You bring PCB design, embedded C, and control systems—skills nobody on the team has.",
+    "You and the team share an interest in AI, and your 09:00–03:00 awake window overlaps with theirs."
+   ],
+   "complement": [
+    {
+     "you": "Your PCB design, embedded C, and control-systems skills",
+     "them": "Rasmus’s backend, ML/AI, and Python skills",
+     "together": "Could combine a physical or embedded component with the dashboard’s software and AI work."
+    },
+    {
+     "you": "Your founder background and pitching skill",
+     "them": "Omar’s product-management, data, and pitching skills",
+     "together": "Could pair your competitive drive and pitch experience with Omar’s product and data perspective."
+    },
+    {
+     "you": "Your CAD and control-systems skills",
+     "them": "Julia’s React, Figma, and Flutter skills",
+     "together": "Could connect a tangible hardware concept with a designed web or mobile experience."
+    }
+   ],
+   "twoWeeks": [
+    {
+     "day": "Day 1",
+     "title": "Agree on the scope",
+     "what": "You, Omar, and the team settle on a feasible health-dashboard goal and whether a hardware element belongs in it."
+    },
+    {
+     "day": "Day 3",
+     "title": "Map the parts",
+     "what": "You outline what your PCB, embedded C, or control-systems work could contribute; Rasmus maps the backend and AI side."
+    },
+    {
+     "day": "Day 5",
+     "title": "Shape the product",
+     "what": "Omar uses his product and data experience to clarify what the dashboard should show, while Julia develops the interface direction in Figma."
+    },
+    {
+     "day": "Day 7",
+     "title": "Rough patch: scope versus speed",
+     "what": "Your drive to win could pull against teammates’ priorities or desire to explore. Get through it by having Omar lead a short scope decision, then agree on one shared deliverable."
+    },
+    {
+     "day": "Day 9",
+     "title": "Build in parallel",
+     "what": "You work on the agreed hardware or embedded contribution while Rasmus handles backend and AI implementation and Julia builds the interface."
+    },
+    {
+     "day": "Day 11",
+     "title": "Connect and check",
+     "what": "Bring your hardware work together with Rasmus’s software and Julia’s interface; Omar checks that the result still serves the product goal."
+    },
+    {
+     "day": "Day 14",
+     "title": "Tell the story",
+     "what": "You and Omar shape the pitch, using your pitching experience and Omar’s business perspective to explain the dashboard and its hardware contribution."
+    }
+   ],
+   "similarityRisks": [
+    {
+     "trait": "You and the team share an interest in AI.",
+     "risk": "AI could become a competing focus instead of a clearly scoped contribution to the health dashboard.",
+     "tip": "Agree on one specific AI use for the product before implementation."
+    },
+    {
+     "trait": "You and the team are all awake from 09:00 into late hours.",
+     "risk": "Overlapping availability may encourage long sessions without clear ownership or stopping points.",
+     "tip": "Set a daily end-of-work check-in and assign next steps before signing off."
+    }
+   ],
+   "verdict": "You fill a clear hardware gap and bring relevant technical and pitching skills, but agree early on scope so your win-focused pace complements the team’s product priorities."
+  },
+  "7a99fc6907e234ec": {
+   "headline": "Silas, you could help Heat Heroes turn its working wearable into a stronger product, if you’re willing to share the hardware lane.",
+   "whyYouFit": [
+    "Leo already owns hardware, so the team needs you to flex rather than take over that role.",
+    "You bring PCB design, embedded C, and control systems—skills nobody on the team has.",
+    "You and the team are awake into the night, giving you a broad window to coordinate."
+   ],
+   "complement": [
+    {
+     "you": "Your PCB design, embedded C, and control-systems skills",
+     "them": "Leo’s Arduino, C++, and hardware experience",
+     "together": "You could strengthen the wearable’s hardware while Leo contributes his existing hardware experience."
+    },
+    {
+     "you": "Your pitching skills and founder background",
+     "them": "Emma’s Flutter, Figma, and TypeScript skills",
+     "together": "You could help shape the pitch while Emma works on the app and its design."
+    },
+    {
+     "you": "Your competitive drive to win",
+     "them": "The team’s working wearable and need for a clearer story",
+     "together": "You could focus the team on presenting the existing build and its value clearly."
+    }
+   ],
+   "twoWeeks": [
+    {
+     "day": "Day 1",
+     "title": "Agree on lanes",
+     "what": "You, Leo, and Emma decide how you’ll contribute without displacing Leo from the hardware role he already owns."
+    },
+    {
+     "day": "Day 3",
+     "title": "Review the wearable",
+     "what": "You and Leo examine the working hardware, bringing your embedded C and control-systems skills alongside his Arduino and C++ experience."
+    },
+    {
+     "day": "Day 5",
+     "title": "Set the app focus",
+     "what": "Emma uses her Flutter and Figma skills to work on the app experience, while you help keep the product story tied to the wearable."
+    },
+    {
+     "day": "Day 7",
+     "title": "Rough patch: competing priorities",
+     "what": "Your drive to win could clash with teammates’ preferred ways of working. Agree on a short, shared priority list, then use it to settle what gets attention first."
+    },
+    {
+     "day": "Day 9",
+     "title": "Improve the hardware plan",
+     "what": "You and Leo identify where your PCB design skills and his hardware experience can complement the existing wearable."
+    },
+    {
+     "day": "Day 11",
+     "title": "Build the pitch",
+     "what": "You use your pitching skills to shape a concise story around the heat-stress warning idea, and Emma supports the app presentation with her design skills."
+    },
+    {
+     "day": "Day 14",
+     "title": "Review the whole product",
+     "what": "The three of you review the wearable, app, and story together, with you flexing across hardware and pitching rather than owning Leo’s preferred role."
+    }
+   ],
+   "similarityRisks": [
+    {
+     "trait": "You and Leo both prefer hardware roles and share interests in hardware and robotics.",
+     "risk": "You could compete for ownership of the build, especially since Leo already owns hardware.",
+     "tip": "Agree with Leo on distinct hardware tasks before starting work."
+    },
+    {
+     "trait": "You and Leo are both awake from 11:00 through 03:00, and you’re also awake until 03:00.",
+     "risk": "The shared late schedule may make it easy to defer coordination with anyone who prefers earlier hours.",
+     "tip": "Set a regular check-in time that works for the whole team."
+    },
+    {
+     "trait": "You and Emma both have mobile-related experience.",
+     "risk": "You could overlap when discussing the app, despite Emma’s preferred code role and the team’s need for code.",
+     "tip": "Let Emma lead app coding and clarify where your skills best support the product."
+    }
+   ],
+   "verdict": "You bring rare hardware skills and pitching, but this is a good fit only if you’re comfortable flexing around Leo’s existing hardware role."
+  },
+  "1abe6a222dc4a82f": {
+   "headline": "Silas, your hardware and control-systems skills could add a missing dimension to Gridlock’s traffic simulation.",
+   "whyYouFit": [
+    "Gridlock has no one doing hardware yet, while hardware is your preferred role.",
+    "You bring PCB design, embedded C, and control systems—skills nobody on the team has.",
+    "You and Jonas both like hardware, and the fit facts estimate 76% overlap in your awake hours with Sara."
+   ],
+   "complement": [
+    {
+     "you": "Your hardware, embedded C, and control-systems skills",
+     "them": "Sara’s data, ML/AI, and backend experience",
+     "together": "You could explore how a tangible control or hardware element might connect to the traffic simulation and its data pipeline."
+    },
+    {
+     "you": "Your Python skills and pitching",
+     "them": "Jonas’s backend, full-stack, and coding experience with Go, Docker, and Node.js",
+     "together": "You could help shape and present the concept while Jonas focuses on implementing its software side."
+    }
+   ],
+   "twoWeeks": [
+    {
+     "day": "Day 1",
+     "title": "Agree on the smallest useful build",
+     "what": "You, Sara, and Jonas align on what the traffic simulation should demonstrate and where your hardware role fits."
+    },
+    {
+     "day": "Day 2",
+     "title": "Map the data-to-demo path",
+     "what": "Sara outlines the data and AI contribution; Jonas maps the backend, while you identify a feasible hardware or control-systems contribution."
+    },
+    {
+     "day": "Day 4",
+     "title": "Define interfaces",
+     "what": "You and Jonas agree how your hardware or embedded work would connect to his software, with Sara clarifying the data needs."
+    },
+    {
+     "day": "Day 6",
+     "title": "Build separate pieces",
+     "what": "You work on the hardware or embedded contribution, Sara on data and AI, and Jonas on code."
+    },
+    {
+     "day": "Day 8",
+     "title": "Rough patch: scope pulls in different directions",
+     "what": "Your drive to win may push for a more ambitious tangible build while the team needs to protect the simulation’s core; agree on one limited hardware contribution and keep the data-and-software demo central."
+    },
+    {
+     "day": "Day 10",
+     "title": "Connect and test",
+     "what": "You and Jonas check the hardware-software connection, while Sara checks that the simulation’s data contribution is represented."
+    },
+    {
+     "day": "Day 12",
+     "title": "Make the demo clear",
+     "what": "You use your pitching experience to explain the concept, and Sara and Jonas help ensure the explanation matches what the data and code actually do."
+    },
+    {
+     "day": "Day 14",
+     "title": "Present the finished slice",
+     "what": "You present the tangible contribution alongside Sara’s data work and Jonas’s software implementation."
+    }
+   ],
+   "similarityRisks": [
+    {
+     "trait": "You and Jonas both like hardware.",
+     "risk": "You could gravitate toward the same hardware work and leave the software connection or other needs less clearly owned.",
+     "tip": "Agree early on who owns each hardware task and how Jonas’s code connects to yours."
+    },
+    {
+     "trait": "You and Sara both have Python skills.",
+     "risk": "You could overlap on Python tasks without a clear division of responsibility.",
+     "tip": "Assign each Python task to one owner and agree on its expected output."
+    },
+    {
+     "trait": "Your awake hours overlap 76% with Sara’s, according to the fit facts.",
+     "risk": "Your shared working window could make it easy to rely on the same hours while missing other times the team might need coordination.",
+     "tip": "Set a shared check-in time and record decisions so work stays coordinated outside that window."
+    }
+   ],
+   "verdict": "You bring a genuinely missing hardware skill set, but the fit depends on keeping that contribution focused on Gridlock’s traffic-simulation goal."
+  },
+  "8c3fbe46b6c8248c": {
+   "headline": "Silas, your hardware and pitching experience could add a distinctive edge to Nebula Ninjas’ AI study buddy.",
+   "whyYouFit": [
+    "Nobody on the team does hardware yet, and your preferred role is hardware.",
+    "You bring PCB design, embedded C, and control systems—skills nobody on the team has.",
+    "You and the team share an interest in AI, and your 09:00–03:00 awake window overlaps theirs."
+   ],
+   "complement": [
+    {
+     "you": "Silas brings pitching and a competitive focus.",
+     "them": "Aino brings product and design experience, while Mikko brings backend and data skills.",
+     "together": "You could help shape a compelling pitch around a study buddy backed by a clear product experience and working data features."
+    },
+    {
+     "you": "Silas brings Python and control-systems skills.",
+     "them": "Mikko brings Python, FastAPI, and SQL; Aino brings React and TypeScript.",
+     "together": "Your Python overlap could help connect the app’s technical pieces, while the team’s distinct web skills support the user-facing quiz experience."
+    }
+   ],
+   "twoWeeks": [
+    {
+     "day": "Day 1",
+     "title": "Agree on the goal",
+     "what": "Silas, Aino, and Mikko align on the AI study-buddy idea and what a focused first version should do."
+    },
+    {
+     "day": "Day 3",
+     "title": "Shape the experience",
+     "what": "Aino leads product and design thinking for how lecture notes become quizzes; Silas contributes a competitive pitch angle."
+    },
+    {
+     "day": "Day 5",
+     "title": "Build the app",
+     "what": "Aino works on the React and TypeScript interface while Mikko builds backend and data features with FastAPI and SQL."
+    },
+    {
+     "day": "Day 7",
+     "title": "Connect the technical pieces",
+     "what": "Silas and Mikko use their shared Python skills to coordinate how the app’s pieces fit together."
+    },
+    {
+     "day": "Day 9",
+     "title": "Rough patch: coding versus discussion",
+     "what": "Aino’s design and product discussions may compete with the team’s coding priorities. Agree on a short decision window, then assign Aino to settle the experience and Mikko to continue implementation."
+    },
+    {
+     "day": "Day 11",
+     "title": "Refine the pitch",
+     "what": "Silas uses pitching experience to sharpen the story, with Aino grounding it in the product experience and Mikko explaining the backend and data work."
+    },
+    {
+     "day": "Day 14",
+     "title": "Review what you built",
+     "what": "The three of you assess the study-buddy prototype and decide which product, backend, and pitch improvements matter most next."
+    }
+   ],
+   "similarityRisks": [
+    {
+     "trait": "Silas and both teammates prefer code roles, even though Silas’s preferred role is hardware.",
+     "risk": "The team could gravitate toward coding and leave Silas’s distinct hardware contribution underused.",
+     "tip": "Name Silas’s hardware-shaped contribution explicitly, while agreeing where his Python work supports the app."
+    },
+    {
+     "trait": "Silas, Aino, and Mikko are all interested in AI.",
+     "risk": "Shared enthusiasm for AI could lead to broad exploration rather than a clear study-buddy product focus.",
+     "tip": "Use the lecture-notes-to-quizzes idea as the decision filter for AI discussions."
+    },
+    {
+     "trait": "Silas and the team share a 09:00–03:00 awake window, according to the fit facts.",
+     "risk": "Overlapping availability offers flexibility but can make it tempting to stretch work late without clear stopping points.",
+     "tip": "Set a shared daily finish time and agree on the next day’s priorities."
+    }
+   ],
+   "verdict": "You bring genuinely missing hardware skills and a useful pitch perspective, but the fit will work best if the team gives your hardware role a clear place in an idea currently centered on software."
+  },
+  "0822fe2c1871ce8a": {
+   "headline": "You could give Quantum Quokkas the hands-on hardware perspective they’re missing.",
+   "whyYouFit": [
+    "The team has no hardware role, and you bring PCB design, embedded C, and control systems.",
+    "Your Python skills can complement a team strong in algorithms, data, and AI.",
+    "You and the team share interests in AI and space, and your stated awake hours overlap."
+   ],
+   "complement": [
+    {
+     "you": "Your hardware, embedded C, and control-systems skills",
+     "them": "Ville’s and Tom’s AI backgrounds, plus Anna’s backend and data experience",
+     "together": "This combination could connect the team’s algorithmic work with your hands-on engineering perspective."
+    },
+    {
+     "you": "Your pitching experience",
+     "them": "Tom’s React skills and the team’s stated strength in algorithms",
+     "together": "You could help present the route-optimisation idea while Tom contributes frontend experience."
+    }
+   ],
+   "twoWeeks": [
+    {
+     "day": "Day 1",
+     "title": "Agree on the project shape",
+     "what": "You and the team clarify how your hardware background fits their delivery-bike route optimiser, without losing sight of its algorithmic focus."
+    },
+    {
+     "day": "Day 3",
+     "title": "Map the work",
+     "what": "You identify where embedded C, control systems, or PCB design could contribute; Ville and Tom bring their AI skills, and Anna brings backend experience."
+    },
+    {
+     "day": "Day 5",
+     "title": "Connect the skill sets",
+     "what": "You compare your Python experience with Ville’s Python skills and the team’s AI and data backgrounds to find useful overlap."
+    },
+    {
+     "day": "Day 7",
+     "title": "Rough patch: scope pulls in different directions",
+     "what": "Your drive to win and interest in tangible builds may pull against a team focused on algorithms. Get through it by agreeing together on the core route-optimisation goal and what each person will contribute."
+    },
+    {
+     "day": "Day 9",
+     "title": "Share progress in the evening",
+     "what": "Use your overlapping late-hour availability to check in: you cover hardware-related thinking, while Anna, Ville, and Tom focus on their coding, data, and AI strengths."
+    },
+    {
+     "day": "Day 11",
+     "title": "Prepare the story",
+     "what": "You use your pitching experience to help explain the idea, with Tom’s React experience available for frontend contributions."
+    },
+    {
+     "day": "Day 14",
+     "title": "Review the collaboration",
+     "what": "You and the team look back at whether your hardware perspective complemented their algorithmic strengths and decide what to carry forward."
+    }
+   ],
+   "similarityRisks": [
+    {
+     "trait": "You and Ville share interests in AI and space.",
+     "risk": "That overlap could pull attention toward those interests rather than the team’s delivery-bike route-optimisation idea.",
+     "tip": "Use the delivery-bike idea as the shared decision filter when choosing what to pursue."
+    },
+    {
+     "trait": "You, Ville, Anna, and Tom all have late overlapping awake hours.",
+     "risk": "A shared late schedule could make it tempting to rely on late-night coordination.",
+     "tip": "Agree on a regular check-in time that works for everyone."
+    },
+    {
+     "trait": "You and Ville both list Python as a skill.",
+     "risk": "You could gravitate toward the same Python work while other needs go uncovered.",
+     "tip": "Assign Python tasks explicitly and keep your distinct hardware skills visible in the work split."
+    }
+   ],
+   "verdict": "You look like a useful complement to the team’s algorithm-heavy profile, provided you keep your competitive drive aligned with its route-optimisation focus."
+  },
+  "b762737ca90321f4": {
+   "headline": "Silas, you could add a new technical angle to Pixel Pantry while Noor keeps the food-waste app focused and clear.",
+   "whyYouFit": [
+    "Pixel Pantry is missing code, and Noor brings React while you bring Python, giving the team different technical skills to draw on.",
+    "You bring PCB design, embedded C, and control systems—hardware skills nobody on the team currently has.",
+    "Noor’s interests include food and climate, which align directly with Pixel Pantry’s food-waste idea, while your different interests could bring a fresh perspective."
+   ],
+   "complement": [
+    {
+     "you": "Your Python skills and founder experience",
+     "them": "Noor’s React skills and product / PM background",
+     "together": "You can compare what each of you can contribute to the app and agree on a focused, feasible build."
+    },
+    {
+     "you": "Your pitching skill",
+     "them": "Noor’s pitching skill and business perspective",
+     "together": "You can combine a competitive pitch with a clear explanation of the product and its purpose."
+    },
+    {
+     "you": "Your PCB design, embedded C, and control-systems skills",
+     "them": "Noor’s design and food-and-climate interests",
+     "together": "You can bring a distinct hardware perspective to a team whose idea is about food waste, while checking together whether it actually fits the app."
+    }
+   ],
+   "twoWeeks": [
+    {
+     "day": "Day 1",
+     "title": "Agree on the goal",
+     "what": "You and Noor clarify the food-waste app’s scope and what the team means by filling its missing code role."
+    },
+    {
+     "day": "Day 2",
+     "title": "Map your contributions",
+     "what": "Noor outlines the product and design priorities; you share your Python skills and discuss where they might fit without assuming a hardware component is needed."
+    },
+    {
+     "day": "Day 4",
+     "title": "Choose a focused direction",
+     "what": "Use Noor’s product / PM perspective and your founder’s focus on winning to settle on a manageable plan for the app."
+    },
+    {
+     "day": "Day 6",
+     "title": "Check the technical fit",
+     "what": "Noor considers the app work that fits her React skills, while you assess where your Python skills can contribute; keep the plan grounded in what each of you can do."
+    },
+    {
+     "day": "Day 8",
+     "title": "Rough patch: competing priorities",
+     "what": "Your drive to win could pull against Noor’s push for a clear product direction. Pause to agree on the app’s core goal, then use that shared decision to choose what to prioritize."
+    },
+    {
+     "day": "Day 10",
+     "title": "Align the explanation",
+     "what": "Combine Noor’s food-and-climate perspective with your pitching skill to make the idea’s purpose and scope clear."
+    },
+    {
+     "day": "Day 12",
+     "title": "Review the plan together",
+     "what": "Check that the chosen direction still matches Noor’s product priorities and your competitive focus; leave out hardware unless it genuinely serves the app."
+    },
+    {
+     "day": "Day 14",
+     "title": "Reflect and decide next steps",
+     "what": "Review how your Python and founder perspective complemented Noor’s React, design, and product skills, and agree on what to carry forward."
+    }
+   ],
+   "similarityRisks": [
+    {
+     "trait": "You and Noor are both awake from 09:00, with overlapping awake windows until midnight.",
+     "risk": "You may both expect to collaborate during the same hours, leaving less explicit ownership of decisions or tasks.",
+     "tip": "At the start of each work session, assign one owner to each decision or task."
+    },
+    {
+     "trait": "You and Noor both list pitching as a skill.",
+     "risk": "You could overlap in shaping or delivering the pitch.",
+     "tip": "Agree in advance who leads each part of the pitch."
+    }
+   ],
+   "verdict": "This looks like a promising but not automatic fit: Noor’s React and product skills complement your technical range, though your hardware strengths may not be central to a food-waste app."
+  },
+  "3580aa779f37fc54": {
+   "headline": "Silas, your hardware experience could add a distinctive hands-on element to Northern Lights’ accessible event companion.",
+   "whyYouFit": [
+    "Northern Lights is missing hardware, and you bring PCB design, embedded C, and control systems—skills no one on the team has.",
+    "Your Python skills could complement the team’s need for code, alongside Elias’s Next.js, Node.js, and TypeScript experience.",
+    "Your pitching skill overlaps with Maya’s pitching experience, while your founder background and drive to win suit a team building a community-focused product."
+   ],
+   "complement": [
+    {
+     "you": "You bring PCB design, embedded C, control systems, and Python.",
+     "them": "Elias brings full-stack skills in Next.js, Node.js, and TypeScript.",
+     "together": "You can explore a hardware or Python contribution while Elias builds the app’s software foundations."
+    },
+    {
+     "you": "You bring pitching experience and a founder’s perspective.",
+     "them": "Maya brings product, business, design, Figma, and SQL skills.",
+     "together": "You can shape and present a compelling demo while Maya grounds it in product and user experience."
+    },
+    {
+     "you": "You bring a competitive focus and hardware skills.",
+     "them": "Northern Lights is building a live schedule, quiet-room, and buddy-system companion for the Junction community.",
+     "together": "You can test whether a tangible technical element adds value to the team’s accessible event experience."
+    }
+   ],
+   "twoWeeks": [
+    {
+     "day": "Day 1",
+     "title": "Agree on the goal",
+     "what": "You, Elias, and Maya decide which part of the event companion to prioritize and what a useful demo should show."
+    },
+    {
+     "day": "Day 3",
+     "title": "Map the experience",
+     "what": "Maya uses her product and Figma skills to outline the chosen user flow; you and Elias identify what can be built for the demo."
+    },
+    {
+     "day": "Day 5",
+     "title": "Divide implementation",
+     "what": "Elias takes the app code, while you investigate where your Python or embedded skills could support a tangible demo contribution."
+    },
+    {
+     "day": "Day 7",
+     "title": "Rough patch: scope disagreement",
+     "what": "Your drive to win may push toward a more ambitious build than the team can deliver. You get through it by agreeing with Maya and Elias on one demo-sized goal before adding extras."
+    },
+    {
+     "day": "Day 9",
+     "title": "Build and review",
+     "what": "Elias continues the software, you work on the agreed technical contribution, and Maya checks that the experience stays clear."
+    },
+    {
+     "day": "Day 11",
+     "title": "Prepare the story",
+     "what": "You and Maya combine your pitching experience to explain the demo; Elias verifies that the technical walkthrough matches what works."
+    },
+    {
+     "day": "Day 14",
+     "title": "Show the result",
+     "what": "The three of you present the event companion, describing the live schedule, quiet-room, and buddy-system concept alongside the functionality you completed."
+    }
+   ],
+   "similarityRisks": [
+    {
+     "trait": "You and Maya both list pitching as a skill.",
+     "risk": "You could duplicate effort or disagree about who leads the presentation.",
+     "tip": "Choose one presentation lead and agree in advance which parts each of you will cover."
+    },
+    {
+     "trait": "Your awake hours overlap with the team from 09:00 to 23:00.",
+     "risk": "With that shared window, it may be easy to assume everyone is available for every late-day discussion, even though your hours extend later than theirs.",
+     "tip": "Set a regular check-in time within the shared window and confirm before scheduling anything later."
+    }
+   ],
+   "verdict": "You fill a clear hardware gap and bring useful technical range, but the fit depends on keeping the hardware contribution aligned with the team’s app-focused scope."
+  }
  }
 }

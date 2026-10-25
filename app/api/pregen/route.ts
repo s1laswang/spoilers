@@ -5,6 +5,8 @@ import participants from "@/data/participants.json";
 import uiTeams from "@/data/ui-teams.json";
 import { teamFromAny } from "@/lib/adapt";
 import { dump } from "@/lib/cache";
+import { explainPair, explains } from "@/lib/explain";
+import { fitFor } from "@/lib/fit";
 import { rankTeams } from "@/lib/fit";
 import { TEAMS } from "@/lib/match";
 import { getPersona } from "@/lib/persona";
@@ -50,6 +52,26 @@ export async function POST() {
   }
   await Promise.all(Array.from({ length: 8 }, worker));
 
-  await writeFile(path.join(process.cwd(), "data/cache.json"), JSON.stringify(dump(), null, 1));
-  return NextResponse.json({ pairs: pairs.length, done, failed });
+  // The pill's explanation panel for the hero × the platform UI's teams.
+  const heroPersona = await getPersona(hero, { live: true });
+  const explainFailed: string[] = [];
+  await Promise.all(
+    ui.map(async (team) => {
+      const fit = fitFor(hero, team);
+      const teamPersonas = await Promise.all(team.members.map((m) => getPersona(m, { live: true })));
+      const runs = await simulatePair(hero, heroPersona, team, teamPersonas, 60_000);
+      const OUT = { shipped: 1, partial: 0.5, fell_apart: 0 } as const;
+      const CON = { core: 1, helpful: 0.8, sidelined: 0.5 } as const;
+      const sim = runs.reduce((s, r) => s + OUT[r.outcome] * CON[r.solo_contribution], 0) / runs.length;
+      const score = Math.round(100 * (0.5 * fit.score + 0.5 * sim));
+      const r = await explainPair({ solo: hero, soloPersona: heroPersona, team, teamPersonas, fit, score, viewer: "solo", live: true, timeoutMs: 60_000 });
+      if (r.source !== "live" && r.source !== "cache") explainFailed.push(team.id);
+    })
+  );
+
+  await writeFile(
+    path.join(process.cwd(), "data/cache.json"),
+    JSON.stringify(dump({ explains: Object.fromEntries(explains) }), null, 1)
+  );
+  return NextResponse.json({ pairs: pairs.length, done, failed, explainFailed });
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import participants from "@/data/participants.json";
 import { soloFromAny, teamFromAny } from "@/lib/adapt";
+import { explainPair } from "@/lib/explain";
 import { fitFor } from "@/lib/fit";
 import { allowLive } from "@/lib/limit";
 import { scorePair, TEAMS } from "@/lib/match";
@@ -17,6 +18,8 @@ export const dynamic = "force-dynamic";
  *
  * mode "fit" (default): profile fit only, no LLM, fast enough to fill every "% match" pill.
  * mode "simulate": adds the AI-simulated weekend (cache first, then live, capped per IP).
+ * mode "explain": the pill's explanation panel (why you fit, complement, two weeks, similarity risks);
+ * cache first, then one live call (15 s budget), else rules only.
  * `reasons` are only profile facts; the simulation comes back separately as `prediction`.
  *
  * Body: { mode?, viewer?: "solo" | "team", solo | soloId, team | teamId }. viewer "team" words the
@@ -45,13 +48,21 @@ export async function POST(req: Request) {
   const viewer = body?.viewer === "team" ? "team" : "solo";
   const fit = fitFor(solo, team, undefined, viewer);
   const reasons = [fit.facts.role, fit.facts.skills, fit.facts.interests, fit.facts.availability];
-  if (body?.mode !== "simulate") {
+  if (body?.mode !== "simulate" && body?.mode !== "explain") {
     return NextResponse.json({ score: Math.round(100 * fit.score), reasons, mode: "fit", source: "fit" });
   }
 
   const live = allowLive(req);
   const agent = await getPersona(solo, { live });
   const { match, source } = await scorePair(solo, agent, team, fit, live);
+
+  if (body?.mode === "explain") {
+    const teamPersonas = await Promise.all(team.members.map((m) => getPersona(m, { live })));
+    const out = await explainPair({
+      solo, soloPersona: agent, team, teamPersonas, fit, score: match.compatibility, viewer, live,
+    });
+    return NextResponse.json({ score: match.compatibility, reasons, explain: out.explain, source: out.source });
+  }
   return NextResponse.json({
     score: match.compatibility,
     reasons,
