@@ -148,6 +148,12 @@ const FORMAT = {
   },
 };
 
+/** A pregenerated or earlier explanation, without touching personas or the model. */
+export function cachedExplain(p: Participant, team: Team, viewer: Viewer): Explain | null {
+  const hit = explains.get(explainKey(p, team, viewer));
+  return hit ? { label: LABEL, ...hit } : null;
+}
+
 export async function explainPair(opts: {
   solo: Participant;
   soloPersona: Persona;

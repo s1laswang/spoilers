@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import participants from "@/data/participants.json";
 import { soloFromAny, teamFromAny } from "@/lib/adapt";
-import { explainPair } from "@/lib/explain";
+import { cachedExplain, explainPair } from "@/lib/explain";
 import { fitFor } from "@/lib/fit";
 import { allowLive } from "@/lib/limit";
 import { scorePair, TEAMS } from "@/lib/match";
@@ -57,6 +57,8 @@ export async function POST(req: Request) {
   const { match, source } = await scorePair(solo, agent, team, fit, live);
 
   if (body?.mode === "explain") {
+    const hit = cachedExplain(solo, team, viewer);
+    if (hit) return NextResponse.json({ score: match.compatibility, reasons, explain: hit, source: "cache" });
     const teamPersonas = await Promise.all(team.members.map((m) => getPersona(m, { live })));
     const out = await explainPair({
       solo, soloPersona: agent, team, teamPersonas, fit, score: match.compatibility, viewer, live,
