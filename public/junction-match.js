@@ -49,11 +49,12 @@
   }
   const sameList = (a, b) => Array.isArray(a) && a.length === b.length && a.every((x, i) => x === b[i]);
   const isHero = u => u.id === 'me' && sameList(u.roles, demoProfile.roles) && sameList(u.skills, demoProfile.skills);
+  const teamMembers = t => (t.memberIds || []).map(user).filter(Boolean);
   function publicTeam(t) {
     if (!t) return null;
     return {
       id: t.id, name: t.name, bio: t.bio || '', lookingFor: arr(t.lookingFor), openSpots: t.openSpots,
-      members: (t.memberIds || []).map(user).filter(Boolean).map((m, i) => publicUser(m, 'Member ' + (i + 1))),
+      members: teamMembers(t).map((m, i) => publicUser(m, 'Member' + (i + 1))),   // no space: the backend keeps the first word
     };
   }
 
@@ -157,7 +158,7 @@
     if (!body) return Promise.resolve(localScore(soloId, teamId));
     const net = post(body, FIT_MAX_MS).then(r => {
       if (!r || typeof r.score !== 'number') return null;
-      if (realPrediction(r.prediction) && !simCache.has(key)) simCache.set(key, Promise.resolve(r.prediction));
+      if (realPrediction(r.prediction) && !simCache.has(key)) simCache.set(key, Promise.resolve(namedPrediction(r.prediction, soloId, teamId)));
       return { score: r.score, reasons: arr(r.reasons).filter(okReason), source: r.source || 'backend' };
     });
     const p = Promise.race([net, sleep(FIT_WAIT_MS).then(() => TIMEOUT)]).then(r => {
@@ -177,17 +178,28 @@
       // fillCompat awaits pills one by one; fire every visible pair at once so they land together
       for (const el of document.querySelectorAll('.compat[data-solo]')) fit(el.dataset.solo, el.dataset.team);
       const r = await fit(soloId, teamId);
-      return r ? { score: r.score, reasons: voice(r.reasons, soloId) } : null;
+      return r ? { score: r.score, reasons: voice(r.reasons, soloId, teamId) } : null;
     } catch (e) {
       try { const r = localScore(soloId, teamId); return r && { score: r.score, reasons: r.reasons }; } catch (_) { return null; }
     }
   }
 
   // display only: backend reasons are in the solo's voice; when a team views a solo, say it to the team
-  function voice(reasons, soloId) {
+  // the backend only ever saw "Builder" / "MemberN" for demo people; put their local first names back
+  function unlabel(text, soloId, teamId) {
+    if (typeof text !== 'string') return text;
+    const members = team(teamId) ? teamMembers(team(teamId)) : [];
+    return text.replace(/\bMember(\d+)\b/g, (m, i) => firstName(members[i - 1]?.name) || m)
+      .replace(/\bBuilder\b/g, m => (user(soloId)?.demo && firstName(user(soloId).name)) || m);
+  }
+  function namedPrediction(pred, soloId, teamId) {
+    const u = x => unlabel(x, soloId, teamId);
+    return { ...pred, headsUp: u(pred.headsUp), spoiler: (pred.spoiler || []).map(e => ({ ...e, who: u(e.who), what: u(e.what) })) };
+  }
+  function voice(reasons, soloId, teamId) {
     const st = state(), teamView = !!st?.me && soloId !== st.me;
     const n = firstName(user(soloId)?.name) || 'They';
-    return reasons.map(x => {
+    return reasons.map(x => unlabel(x, soloId, teamId)).map(x => {
       if (teamView) {
         x = x.replace(/^They're missing (a|an) (.+?) person, and that's you\./, (_, a, role) => `You're missing ${a} ${role} person, and ${n} fits.`)
           .replace(/^You bring (.+?), which nobody there has\./, (_, skills) => `${n} brings ${skills}, which nobody on your team has.`);
@@ -202,7 +214,7 @@
     const body = payload(soloId, teamId, 'simulate');
     if (!body) return Promise.resolve(null);
     const p = post(body, SIM_MAX_MS).then(r => realPrediction(r?.prediction)).catch(() => null)
-      .then(pred => { if (!pred) simCache.delete(key); return pred; });
+      .then(pred => { if (!pred) simCache.delete(key); return pred && namedPrediction(pred, soloId, teamId); });
     simCache.set(key, p);
     return p;
   }
