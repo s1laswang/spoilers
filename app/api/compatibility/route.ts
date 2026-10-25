@@ -4,6 +4,7 @@ import { soloFromAny, teamFromAny } from "@/lib/adapt";
 import { fitFor } from "@/lib/fit";
 import { allowLive } from "@/lib/limit";
 import { scorePair, TEAMS } from "@/lib/match";
+import { lastErrorStatus } from "@/lib/llm";
 import { getPersona } from "@/lib/persona";
 import type { Participant } from "@/lib/types";
 
@@ -65,5 +66,7 @@ export async function POST(req: Request) {
       headsUp: match.headsUp,
     },
     source,
+    // Why a simulate request fell back to fit only: an HTTP status (401 key, 429 quota) or "capped".
+    ...(source === "fit-only" ? { simError: live ? lastErrorStatus : "capped" } : {}),
   });
 }

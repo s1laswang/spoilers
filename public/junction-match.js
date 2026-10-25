@@ -177,10 +177,23 @@
       // fillCompat awaits pills one by one; fire every visible pair at once so they land together
       for (const el of document.querySelectorAll('.compat[data-solo]')) fit(el.dataset.solo, el.dataset.team);
       const r = await fit(soloId, teamId);
-      return r ? { score: r.score, reasons: r.reasons } : null;
+      return r ? { score: r.score, reasons: voice(r.reasons, soloId) } : null;
     } catch (e) {
       try { const r = localScore(soloId, teamId); return r && { score: r.score, reasons: r.reasons }; } catch (_) { return null; }
     }
+  }
+
+  // display only: backend reasons are in the solo's voice; when a team views a solo, say it to the team
+  function voice(reasons, soloId) {
+    const st = state(), teamView = !!st?.me && soloId !== st.me;
+    const n = firstName(user(soloId)?.name) || 'They';
+    return reasons.map(x => {
+      if (teamView) {
+        x = x.replace(/^They're missing (a|an) (.+?) person, and that's you\./, (_, a, role) => `You're missing ${a} ${role} person, and ${n} fits.`)
+          .replace(/^You bring (.+?), which nobody there has\./, (_, skills) => `${n} brings ${skills}, which nobody on your team has.`);
+      }
+      return x.replace(/\ba AI\b/g, 'an AI');
+    });
   }
 
   function simulate(soloId, teamId) {

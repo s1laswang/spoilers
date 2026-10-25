@@ -45,6 +45,9 @@ export function logUsage(label: string, model: string, u: Usage): void {
   );
 }
 
+/** Status of the last failed call (401 bad key, 429 quota/rate), for /api/health. Never the key. */
+export let lastErrorStatus: number | string | null = null;
+
 /** One strict-JSON Responses call; returns the parsed object or throws. */
 export async function jsonCall<T>(opts: {
   label: string;
@@ -66,7 +69,10 @@ export async function jsonCall<T>(opts: {
       ...STATELESS,
     },
     { signal: AbortSignal.timeout(opts.timeoutMs) }
-  );
+  ).catch((err: { status?: number; name?: string }) => {
+    lastErrorStatus = err?.status ?? err?.name ?? "error";
+    throw err;
+  });
   logUsage(opts.label, SIM_MODEL, response.usage);
   const text = response.output_text?.trim();
   if (!text) throw new Error(`[${opts.label}] empty answer: status=${response.status}`);
