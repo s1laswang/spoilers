@@ -1,7 +1,8 @@
 /* junction-match.js: the bridge between the Junction matchmaking UI (NovaThetop/junction-matchmaker)
  * and the spoilers matching backend. Load it BEFORE the page script:
  *   <script src="https://<backend>/junction-match.js"></script>
- * It sets window.JunctionMatch = { compatibility, simulate, analyzeProfile, demoProfile }.
+ * It sets window.JunctionMatch = { compatibility, simulate, explain, analyzeProfile, demoProfile }; clicking a
+ * filled "% match" pill opens an explanation panel.
  * The page keeps its state in a top-level `let S`; we read it at call time (shared global scope).
  * Plain browser JS, no dependencies, never throws into the page. */
 (function () {
@@ -332,5 +333,207 @@
     awake: { from: '09:00', to: '03:00' },
   };
 
-  window.JunctionMatch = { compatibility, simulate, analyzeProfile, demoProfile, apiBase: BASE };
+  /* ---------- explain panel: click a "% match" pill ---------- */
+  const EXPLAIN_MAX_MS = 25000;
+  const explainCache = new Map();
+  const viewerOf = soloId => (soloId === state()?.me ? 'solo' : 'team');
+  const deepUnlabel = (x, soloId, teamId) => typeof x === 'string' ? unlabel(x, soloId, teamId)
+    : Array.isArray(x) ? x.map(y => deepUnlabel(y, soloId, teamId))
+    : x && typeof x === 'object' ? Object.fromEntries(Object.entries(x).map(([k, v]) => [k, deepUnlabel(v, soloId, teamId)])) : x;
+
+  function explain(soloId, teamId, viewer = viewerOf(soloId)) {
+    const key = soloId + '|' + teamId + '|' + viewer;
+    if (explainCache.has(key)) return explainCache.get(key);
+    const body = payload(soloId, teamId, 'explain');
+    if (!body) return Promise.resolve(null);
+    const p = post({ ...body, viewer }, EXPLAIN_MAX_MS).then(r => {
+      const e = r?.explain;
+      if (!e || !Array.isArray(e.twoWeeks) || !e.twoWeeks.length) return null;
+      return deepUnlabel({ ...r, reasons: arr(r.reasons).filter(okReason) }, soloId, teamId);
+    }).catch(() => null).then(r => { if (!r) explainCache.delete(key); return r; });
+    explainCache.set(key, p);
+    return p;
+  }
+
+  // rules content when the AI explanation isn't available: only facts from both profiles
+  function rulesExplain(soloId, teamId, reasons, sim) {
+    const s = user(soloId), t = team(teamId);
+    const members = teamMembers(t).filter(m => m.id !== s.id);
+    const teamView = viewerOf(soloId) === 'team';
+    const sName = firstName(s.name) || 'They';
+    const lc = xs => new Set(xs.map(x => x.toLowerCase()));
+    const sRoles = arr(s.roles), sSkills = arr(s.skills), sInt = arr(s.interests);
+    const mRoles = [...new Set(members.flatMap(m => arr(m.roles)))], mSkills = [...new Set(members.flatMap(m => arr(m.skills)))];
+    const mInt = [...new Set(members.flatMap(m => arr(m.interests)))];
+    const only = (a, b) => a.filter(x => !lc(b).has(x.toLowerCase()));
+    const both = (a, b) => a.filter(x => lc(b).has(x.toLowerCase()));
+    const soloSide = { roles: only(sRoles, mRoles), skills: only(sSkills, mSkills) };
+    const teamSide = { roles: only(mRoles, sRoles), skills: only(mSkills, sSkills) };
+    const [you, them] = teamView ? [teamSide, soloSide] : [soloSide, teamSide];
+    const complement = [];
+    if (you.roles.length || them.roles.length) complement.push({ you: you.roles.join(', ') || 'same roles', them: them.roles.join(', ') || 'same roles', together: `Roles covered: ${[...new Set([...sRoles, ...mRoles])].join(', ')}` });
+    if (you.skills.length || them.skills.length) complement.push({ you: you.skills.join(', ') || 'same skills', them: them.skills.join(', ') || 'same skills', together: `${new Set([...sSkills, ...mSkills].map(x => x.toLowerCase())).size} distinct skills between you` });
+
+    const risks = [];
+    const sameTop = members.find(m => arr(m.roles)[0] && arr(m.roles)[0] === sRoles[0]);
+    if (sameTop) risks.push({ trait: `${sName} and ${firstName(sameTop.name)} both lead with ${sRoles[0]}`, risk: 'Both want the same job', tip: 'Split it on day one: one owns the core, the other owns integration and the demo.' });
+    const sSpan = span(s.awake);
+    const sameSleep = sSpan && members.find(m => { const x = span(m.awake); return x && Math.abs(((x[1] - sSpan[1]) % 1440 + 1440 + 720) % 1440 - 720) <= 60; });
+    if (sameSleep) risks.push({ trait: `${sName} ${s.awake.from}–${s.awake.to}, ${firstName(sameSleep.name)} ${sameSleep.awake.from}–${sameSleep.awake.to}`, risk: 'You crash at the same time', tip: 'Stagger one sleep block so someone is awake for the last stretch before the deadline.' });
+    const sharedSkills = both(sSkills, mSkills);
+    if (sharedSkills.length) {
+      const gap = arr(t.lookingFor).find(r => !lc([...sRoles, ...mRoles]).has(r.toLowerCase()));
+      risks.push({ trait: `Both list ${list(sharedSkills)}`, risk: `Duplicated work${gap ? `, and still nobody on ${gap}` : ', and a gap somewhere else'}`, tip: 'Pair on it once, then one of you takes the part nobody owns.' });
+    }
+    const sharedInt = both(sInt, mInt);
+    if (sharedInt.length) risks.push({ trait: `Both into ${list(sharedInt)}`, risk: 'Tunnel vision: easy to agree, nobody questions the idea', tip: 'Ask one outsider to poke holes before you lock the scope.' });
+    if (!risks.length) risks.push({ trait: 'Few shared traits', risk: 'Different instincts can slow decisions', tip: 'Agree up front who makes the final scope call.' });
+
+    const twoWeeks = (sim?.spoiler || []).map(e => ({ day: e.time || '', title: e.who || '', what: e.what || '' }));
+    if (sim?.headsUp) twoWeeks.push({ day: 'Heads-up', title: '', what: sim.headsUp });
+    const score = Math.round(Number(String(reasons.score ?? '').replace(/\D/g, '')) || 0);
+    const verdict = score >= 75 ? 'Strong fit: send the request.'
+      : score >= 55 ? `Good fit with one thing to talk through first: ${risks[0].risk.toLowerCase()}.`
+      : `Worth a chat, but check this first: ${risks[0].risk.toLowerCase()}.`;
+    return {
+      label: 'AI agent explanation + simulation: a prediction, not a fact',
+      headline: '', whyYouFit: reasons.list, complement, twoWeeks, timelineTitle: twoWeeks.length ? 'Simulated weekend' : '',
+      similarityRisks: risks, verdict, source: 'rules',
+    };
+  }
+
+  const CSS = `
+.compat.on,.match.compat:not(.none){cursor:pointer}
+.jm-back{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.62);display:flex;align-items:center;justify-content:center;padding:24px}
+.jm-modal{background:#232323;border:1px solid #3c3c3c;border-radius:16px;color:#fff;font-family:Montserrat,system-ui,sans-serif;width:min(680px,100%);max-height:calc(100vh - 48px);display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.jm-body{overflow:auto;padding:22px 24px 8px}
+.jm-label{font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:#8e908e;margin-bottom:10px}
+.jm-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.jm-top h2{margin:0;font-size:20px;line-height:1.3}
+.jm-x{background:none;border:0;color:#8e908e;font-size:22px;line-height:1;cursor:pointer;padding:2px 6px}
+.jm-pill{display:inline-block;margin-top:10px;border-radius:99px;padding:4px 11px;font-size:12.5px;font-weight:700;background:#78ce8d;color:#000}
+.jm-head{color:#eaeaea;margin:12px 0 0;font-size:15px}
+.jm-sec{background:#2b2b2b;border:1px solid #3c3c3c;border-radius:12px;padding:14px 16px;margin-top:14px}
+.jm-sec h3{margin:0 0 8px;font-size:13px;letter-spacing:.03em;text-transform:uppercase;color:#78ce8d}
+.jm-sec ul{margin:0;padding-left:18px}.jm-sec li{margin:3px 0;color:#eaeaea;font-size:14px}
+.jm-status{margin-top:14px;color:#8e908e;font-size:14px;display:flex;gap:10px;align-items:center}
+.jm-dot{width:8px;height:8px;border-radius:50%;background:#78ce8d;animation:jm-p 1s infinite alternate}
+@keyframes jm-p{from{opacity:.25}to{opacity:1}}
+.jm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:13.5px}
+.jm-grid b{font-size:11.5px;color:#8e908e;text-transform:uppercase;letter-spacing:.03em}
+.jm-grid div{color:#eaeaea}
+.jm-tl{list-style:none;padding:0 !important;margin:0;border-left:2px solid #3e5944}
+.jm-tl li{padding:0 0 10px 14px;position:relative}
+.jm-tl li:before{content:'';position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:#78ce8d}
+.jm-tl .d{font-size:12px;color:#8e908e}
+.jm-risk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:13.5px;padding:8px 0;border-top:1px solid #3c3c3c}
+.jm-risk:first-of-type{border-top:0}
+.jm-risk span{color:#eaeaea}.jm-risk em{color:#8e908e;font-style:normal;font-size:11.5px;text-transform:uppercase;display:block}
+.jm-foot{display:flex;gap:10px;justify-content:flex-end;padding:14px 24px;border-top:1px solid #3c3c3c}
+.jm-btn{font:700 14px Montserrat,system-ui,sans-serif;border-radius:10px;padding:10px 16px;cursor:pointer;border:0;background:#78ce8d;color:#000}
+.jm-btn.ghost{background:transparent;color:#fff;border:1px solid #3c3c3c}
+.jm-btn:disabled{opacity:.55;cursor:default}
+@media (max-width:600px){.jm-back{padding:0}.jm-modal{width:100%;height:100%;max-height:none;border-radius:0;border:0}
+.jm-grid,.jm-risk{grid-template-columns:1fr}.jm-body{padding:18px 16px 8px}.jm-foot{padding:12px 16px}}`;
+
+  let open = null;   // { el, token, prevOverflow }
+  function closePanel() {
+    if (!open) return;
+    open.el.remove();
+    document.body.style.overflow = open.prevOverflow;
+    open = null;
+  }
+
+  function sectionsHtml(x, teamView, sName) {
+    const e = escHtml, li = xs => xs.map(v => `<li>${e(v)}</li>`).join('');
+    let h = '';
+    if (x.headline) h += `<p class="jm-head">${e(x.headline)}</p>`;
+    if (arr(x.whyYouFit).length) h += `<div class="jm-sec"><h3>Why you'd work well</h3><ul>${li(arr(x.whyYouFit))}</ul></div>`;
+    const comp = (x.complement || []).filter(c => c && (c.you || c.them || c.together));
+    if (comp.length) h += `<div class="jm-sec"><h3>How you complement each other</h3>${comp.map(c => `<div class="jm-grid"><div><b>You</b><br>${e(c.you)}</div><div><b>${teamView ? e(sName) : 'Them'}</b><br>${e(c.them)}</div><div><b>Together</b><br>${e(c.together)}</div></div>`).join('<div style="height:10px"></div>')}</div>`;
+    const tl = (x.twoWeeks || []).filter(d => d && (d.title || d.what));
+    if (tl.length) h += `<div class="jm-sec"><h3>${e(x.timelineTitle || 'Two weeks together')}</h3><ul class="jm-tl">${tl.map(d => `<li><div class="d">${e(d.day)}</div>${d.title ? `<b>${e(d.title)}</b> ` : ''}${e(d.what)}</li>`).join('')}</ul></div>`;
+    const rk = (x.similarityRisks || []).filter(r => r && (r.trait || r.risk));
+    if (rk.length) h += `<div class="jm-sec"><h3>Where it could rub</h3>${rk.map(r => `<div class="jm-risk"><span><em>Similar</em>${e(r.trait)}</span><span><em>Risk</em>${e(r.risk)}</span><span><em>Tip</em>${e(r.tip)}</span></div>`).join('')}</div>`;
+    if (x.verdict) h += `<div class="jm-sec"><h3>Verdict</h3><div style="color:#eaeaea">${e(x.verdict)}</div></div>`;
+    return h;
+  }
+
+  const pendingLabel = (req, teamView) => req.kind === 'invite'
+    ? (teamView ? 'Invite sent' : 'Invited you: see Requests')
+    : (teamView ? 'Wants to join: see Requests' : 'Request sent');
+  async function openPanel(soloId, teamId, pillText) {
+    closePanel();
+    const s = user(soloId), t = team(teamId);
+    if (!s || !t) return;
+    const teamView = viewerOf(soloId) === 'team';
+    const sName = firstName(s.name) || 'They';
+    const token = {};
+    if (!document.getElementById('jm-style')) {
+      const st = document.createElement('style'); st.id = 'jm-style'; st.textContent = CSS; document.head.appendChild(st);
+    }
+    const back = document.createElement('div');
+    back.className = 'jm-back';
+    const title = teamView ? `Why ${sName} fits your team` : `Why you fit ${t.name}`;
+    const pending = (() => { try { return typeof findReq === 'function' ? findReq(soloId, teamId) : null; } catch (e) { return null; } })();   // eslint-disable-line no-undef
+    const canAsk = (() => { try { return typeof sendRequest === 'function'; } catch (e) { return false; } })();   // eslint-disable-line no-undef
+    const askLabel = teamView ? 'Invite to team' : 'Request to join';
+    back.innerHTML = `<div class="jm-modal" role="dialog" aria-modal="true" aria-label="${escHtml(title)}">
+      <div class="jm-body">
+        <div class="jm-label">AI agent explanation + simulation: a prediction, not a fact</div>
+        <div class="jm-top"><h2>${escHtml(title)}</h2><button class="jm-x" aria-label="Close" data-jm="close">×</button></div>
+        <span class="jm-pill">${escHtml(pillText || '')}</span>
+        <div class="jm-sec" data-jm="reasons" hidden><h3>Fit</h3><ul></ul></div>
+        <div class="jm-status" data-jm="status"><span class="jm-dot"></span>Your agent is test-driving two weeks with ${escHtml(teamView ? sName : t.name)}…</div>
+        <div data-jm="sections"></div>
+      </div>
+      <div class="jm-foot">
+        ${canAsk ? `<button class="jm-btn" data-jm="ask" ${pending ? 'disabled' : ''}>${pending ? pendingLabel(pending, teamView) : askLabel}</button>` : ''}
+        <button class="jm-btn ghost" data-jm="close">Close</button>
+      </div></div>`;
+    open = { el: back, token, prevOverflow: document.body.style.overflow };
+    document.body.style.overflow = 'hidden';
+    document.body.appendChild(back);
+    back.querySelector('.jm-x').focus();
+    back.addEventListener('click', ev => {
+      if (ev.target === back || ev.target.closest('[data-jm=close]')) return closePanel();
+      const ask = ev.target.closest('[data-jm=ask]');
+      if (ask && !ask.disabled) {
+        try { sendRequest(teamView ? 'invite' : 'join_request', soloId, teamId); } catch (e) {}   // eslint-disable-line no-undef
+        ask.disabled = true; ask.textContent = teamView ? 'Invite sent' : 'Request sent';
+      }
+    });
+    const live = () => open && open.token === token;
+
+    const fitR = await compatibility(soloId, teamId).catch(() => null);
+    const reasons = arr(fitR?.reasons);
+    if (!live()) return;
+    if (reasons.length) {
+      const box = back.querySelector('[data-jm=reasons]');
+      box.hidden = false; box.querySelector('ul').innerHTML = reasons.map(x => `<li>${escHtml(x)}</li>`).join('');
+    }
+    let x = await explain(soloId, teamId, teamView ? 'team' : 'solo').catch(() => null);
+    if (!live()) return;
+    if (x) {
+      x = { ...x.explain, timelineTitle: 'Two weeks together' };
+    } else {
+      const sim = await Promise.race([simulate(soloId, teamId).catch(() => null), sleep(4000).then(() => null)]);
+      if (!live()) return;
+      x = rulesExplain(soloId, teamId, { list: reasons.length ? reasons : (localScore(soloId, teamId)?.reasons || []), score: fitR?.score ?? pillText }, sim);
+    }
+    back.querySelector('[data-jm=status]').remove();
+    back.querySelector('[data-jm=sections]').innerHTML = sectionsHtml(x, teamView, sName);
+    back.querySelector('[data-jm=reasons]').hidden = true;   // the sections carry the reasons from here on
+  }
+
+  document.addEventListener('click', ev => {
+    // any filled pill in either UI version (".compat.on" or ".match.compat"); never the simulation box
+    const pill = ev.target.closest?.('[data-solo][data-team]');
+    if (!pill || pill.closest('.prediction') || !/\d+% match/.test(pill.textContent)) return;
+    ev.preventDefault(); ev.stopPropagation();
+    try { openPanel(pill.dataset.solo, pill.dataset.team, pill.textContent.trim()).catch(() => {}); } catch (e) {}
+  }, true);
+  document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && open) closePanel(); });
+
+  window.JunctionMatch = { compatibility, simulate, explain, analyzeProfile, demoProfile, apiBase: BASE };
 })();
